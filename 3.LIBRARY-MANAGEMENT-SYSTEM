@@ -5,25 +5,64 @@ class Book {
 
     int id;
     String name;
+    boolean isIssued;
 
     // Static field
     static int totalBooks = 0;
 
     // Constructor
     Book(int id, String name) {
+
         this.id = id;
         this.name = name;
 
+        isIssued = false;
+
+        // Increase total books
         totalBooks++;
+    }
+
+    // Issue book
+    void issueBook() {
+
+        if (!isIssued) {
+
+            isIssued = true;
+
+            System.out.println("Book Issued");
+        }
+        else {
+
+            System.out.println("Book Already Issued");
+        }
+    }
+
+    // Return book
+    void returnBook() {
+
+        if (isIssued) {
+
+            isIssued = false;
+
+            System.out.println("Book Returned");
+        }
+        else {
+
+            System.out.println("Book was not issued");
+        }
     }
 
     // Display book details
     void display() {
-        System.out.println(id + " " + name);
+
+        System.out.println(id + " " + name + " " +
+
+                (isIssued ? "Issued" : "Available"));
     }
 
     // Static method
     static void showTotalBooks() {
+
         System.out.println("Total Books: " + totalBooks);
     }
 }
@@ -35,31 +74,107 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        Book[] books = new Book[5];
+        Book[] books = new Book[10];
 
-        // Adding books
-        for (int i = 0; i < 2; i++) {
+        int count = 0;
+        int choice;
 
-            System.out.print("Enter Book ID: ");
-            int id = sc.nextInt();
+        do {
 
-            sc.nextLine();
+            // Menu
+            System.out.println("\n1. Add Book");
+            System.out.println("2. View Books");
+            System.out.println("3. Issue Book");
+            System.out.println("4. Return Book");
+            System.out.println("5. Total Books");
+            System.out.println("0. Exit");
 
-            System.out.print("Enter Book Name: ");
-            String name = sc.nextLine();
+            System.out.print("Enter Choice: ");
+            choice = sc.nextInt();
 
-            books[i] = new Book(id, name);
-        }
+            switch (choice) {
 
-        // Display books
-        System.out.println("\nBook Details");
+                // Add book
+                case 1:
 
-        for (int i = 0; i < 2; i++) {
-            books[i].display();
-        }
+                    System.out.print("Enter Book ID: ");
+                    int id = sc.nextInt();
 
-        // Calling static method
-        Book.showTotalBooks();
+                    sc.nextLine();
+
+                    System.out.print("Enter Book Name: ");
+                    String name = sc.nextLine();
+
+                    books[count] = new Book(id, name);
+
+                    count++;
+
+                    System.out.println("Book Added");
+
+                    break;
+
+                // View books
+                case 2:
+
+                    System.out.println("ID Name Status");
+
+                    for (int i = 0; i < count; i++) {
+
+                        books[i].display();
+                    }
+
+                    break;
+
+                // Issue book
+                case 3:
+
+                    System.out.print("Enter Book ID: ");
+                    int issueId = sc.nextInt();
+
+                    for (int i = 0; i < count; i++) {
+
+                        if (books[i].id == issueId) {
+
+                            books[i].issueBook();
+                        }
+                    }
+
+                    break;
+
+                // Return book
+                case 4:
+
+                    System.out.print("Enter Book ID: ");
+                    int returnId = sc.nextInt();
+
+                    for (int i = 0; i < count; i++) {
+
+                        if (books[i].id == returnId) {
+
+                            books[i].returnBook();
+                        }
+                    }
+
+                    break;
+
+                // Total books
+                case 5:
+
+                    Book.showTotalBooks();
+
+                    break;
+
+                case 0:
+
+                    System.out.println("Exiting...");
+                    break;
+
+                default:
+
+                    System.out.println("Invalid Choice");
+            }
+
+        } while (choice != 0);
 
         sc.close();
     }
