@@ -1,0 +1,63 @@
+// Class for mathematical operations
+class mathoperations {
+
+    // Method to calculate power for int
+    static int power(int base, int exp) {
+
+        int result = 1;
+
+        for (int i = 1; i <= exp; i++) {
+            result = result * base;
+        }
+
+        return result;
+    }
+
+    // Method to calculate power for double
+    static double power(double base, int exp) {
+
+        double result = 1;
+
+        for (int i = 1; i <= exp; i++) {
+            result = result * base;
+        }
+
+        return result;
+    }
+
+    // Method to find absolute value of int
+    static int absolute(int num) {
+        return (num < 0) ? -num : num;
+    }
+
+    // Method to find absolute value of double
+    static double absolute(double num) {
+        return (num < 0) ? -num : num;
+    }
+}
+
+// Main class
+public class Main {
+
+    public static void main(String[] args) {
+
+        // User defined methods
+        System.out.println("Power (int): " + mathoperations.power(2, 3));
+
+        System.out.println("Power (double): " +
+                mathoperations.power(2.5, 2));
+
+        System.out.println("Absolute (int): " +
+                mathoperations.absolute(-10));
+
+        System.out.println("Absolute (double): " +
+                mathoperations.absolute(-5.5));
+
+        // Inbuilt Math class methods
+        System.out.println("Power: " + Math.pow(2, 3));
+
+        System.out.println("Absolute (int): " + Math.abs(-10));
+
+        System.out.println("Absolute (double): " + Math.abs(-5.5));
+    }
+}
