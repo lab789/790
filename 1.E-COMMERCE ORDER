@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+// Product class
+class Product {
+
+    int id;
+    String name;
+    double price;
+    int quantity;
+
+    // Default constructor
+    Product() {
+        id = 0;
+        name = "Unknown";
+        price = 0;
+        quantity = 0;
+    }
+
+    // Parameterized constructor
+    Product(int id, String name, double price, int quantity) {
+
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    // Method to calculate total price
+    double getTotal() {
+        return price * quantity;
+    }
+
+    // Method to display product details
+    void display() {
+
+        System.out.println(id + "\t" + name + "\t" +
+                price + "\t" + quantity + "\t" + getTotal());
+    }
+}
+
+// Main class
+public class ecommerce {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Creating objects using parameterized constructor
+        Product p1 = new Product(1, "Laptop", 50000, 1);
+
+        Product p2 = new Product(2, "Headphones", 2000, 2);
+
+        // User input
+        System.out.println("Enter Product Details");
+
+        System.out.print("Enter ID: ");
+        int id = sc.nextInt();
+
+        sc.nextLine();
+
+        System.out.print("Enter Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Price: ");
+        double price = sc.nextDouble();
+
+        System.out.print("Enter Quantity: ");
+        int quantity = sc.nextInt();
+
+        // Creating object using parameterized constructor
+        Product userProduct =
+                new Product(id, name, price, quantity);
+
+        // Calculating total amount
+        double total = p1.getTotal() +
+                       p2.getTotal() +
+                       userProduct.getTotal();
+
+        // Discount
+        double discount = 0;
+
+        if (total > 50000) {
+            discount = total * 0.10;
+        }
+
+        // Final amount
+        double finalAmount = total - discount;
+
+        // Display output
+        System.out.println("\nID\tName\tPrice\tQty\tTotal");
+
+        p1.display();
+        p2.display();
+        userProduct.display();
+
+        System.out.println("\nTotal Amount: " + total);
+
+        System.out.println("Discount: " + discount);
+
+        System.out.println("Final Amount: " + finalAmount);
+
+        sc.close();
+    }
+}
