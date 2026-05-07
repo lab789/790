@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+// Book class
+class Book {
+
+    int id;
+    String name;
+
+    // Static field
+    static int totalBooks = 0;
+
+    // Constructor
+    Book(int id, String name) {
+        this.id = id;
+        this.name = name;
+
+        totalBooks++;
+    }
+
+    // Display book details
+    void display() {
+        System.out.println(id + " " + name);
+    }
+
+    // Static method
+    static void showTotalBooks() {
+        System.out.println("Total Books: " + totalBooks);
+    }
+}
+
+// Main class
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Book[] books = new Book[5];
+
+        // Adding books
+        for (int i = 0; i < 2; i++) {
+
+            System.out.print("Enter Book ID: ");
+            int id = sc.nextInt();
+
+            sc.nextLine();
+
+            System.out.print("Enter Book Name: ");
+            String name = sc.nextLine();
+
+            books[i] = new Book(id, name);
+        }
+
+        // Display books
+        System.out.println("\nBook Details");
+
+        for (int i = 0; i < 2; i++) {
+            books[i].display();
+        }
+
+        // Calling static method
+        Book.showTotalBooks();
+
+        sc.close();
+    }
+}
