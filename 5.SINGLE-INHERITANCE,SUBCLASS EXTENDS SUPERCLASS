@@ -1,0 +1,36 @@
+// Parent class
+class Animal {
+
+    void eat() {
+        System.out.println("This animal eats food");
+    }
+
+    void sleep() {
+        System.out.println("This animal sleeps");
+    }
+}
+
+// Child class inheriting Animal
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Main class
+public class SingleInheritanceDemo {
+
+    public static void main(String[] args) {
+
+        // Creating object of child class
+        Dog d = new Dog();
+
+        // Calling parent class methods
+        d.eat();
+        d.sleep();
+
+        // Calling child class method
+        d.bark();
+    }
+}
